@@ -1,0 +1,32 @@
+<form class="introform" action="/member.php" method="get" id="validate_tel">
+<div>
+<div id="phoneError" class="d-none alert alert-danger">โปรดกรอกเบอร์โทรศัพท์ให้ถูกต้อง!</div>
+<input type="tel" class="form-control" placeholder="เบอร์มือถือ" name="mobile" id="phone" required>
+</div>
+<button id="btnSubmit">submit</button>
+</form>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+		$(document).ready(function () {
+			var phonePattern = /^0\d{2}\d{3}\d{4}$/;
+			//id input tel
+			$("#phone").on("keyup", function () {
+				var phoneNumber = $(this).val();
+				var phoneError = $("#phoneError");
+				if (phonePattern.test(phoneNumber)) {
+					phoneError.addClass("d-none");
+					$("#btnSubmit").prop("disabled", false);
+				} else {
+					phoneError.removeClass("d-none");
+					$("#btnSubmit").prop("disabled", true);
+				}
+			});
+			$("#btnSubmit").click(function (event) {
+				event.preventDefault();
+				$("#validate_tel").submit();
+			});
+			//id tag form
+		})
+	</script>
